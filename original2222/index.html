@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stilo.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="inicioprincipal">
+
+    <div style="text-align: center; margin-top: 80px;">
+
+    <div id="vista1">
+
+        INGRESAR EL NOMBRE  DEL JUGADOR  PARA  COMENZAR:!!!
+        
+        <input type="text" id="jugador">
+        <br>
+        <button id="ingresar">Ingresar</button>
+        <br>
+        <p id="error" style="color: red;"></p>
+    </div>
+
+
+
+
+    <div style="display: none;" id="vista2">
+        <p id="nombre"></p>
+        <p id="cartaJugador"> (" ° ")
+                                
+        </p>
+
+        <br>
+        <img src="blancacarta.gif" id="cambioCarta" style="width: 140px; height: 80;">
+        <h1 style="color: rgb(223, 21, 21);" id="result">Resultado : 0</h1>
+
+        <br>
+        <button id="pedirCarta">Pedir carta</button>
+
+        <button id="validar">Validar</button>
+        <br><br>
+        <p>El computador :)</p>
+    </div>
+
+
+
+
+    <div style="display: none;" id="vista3">
+        <p id="resultadoJuga">Resultado del jugador :)</p>
+        <p id="resultadoCPU"> El computador :()</p>
+        <h1 id="res"></h1>
+        <button id="reiniciar">Volver a Jugar</button>
+    </div>
+</div>
+</div>
+
+
+
+
+
+</body>
+<script src="todasju.js"></script>
+<script src="todasLasClases.js"></script>
+
+
+<script>
+
+
+
+    var cont=0;
+    var suma=0;
+    var suma1=0;
+    var puntajeJugardor=[];
+    var puntajeCPU=[];
+    var x=2;
+    var b=new Baraja();
+    b.crear(x);
+    b.mazo;
+    var j=new Juego();
+    j.mezclar(b.mazo);
+
+
+
+
+    document.getElementById('ingresar').addEventListener('click',function(){
+        var nombreJugador =document.getElementById('jugador').value;
+        if (nombreJugador==='') {
+        document.getElementById('error').innerHTML='ES NECESARIO INGRESAR NOMBRE :(';
+        }else{
+            console.log(nombreJugador);
+        document.getElementById('vista1').style='display:none';
+        document.getElementById('vista2').style='display:block';
+        document.getElementById('vista3').style='display:none';
+
+        var jugador=new Jugador(nombreJugador);
+        
+        document.getElementById('nombre').innerHTML='Jugador: '+jugador.nombre;
+        }
+    });
+
+    document.getElementById('pedirCarta').addEventListener('click',function(){
+        j.pedirCartaJugador(b.mazo);
+    });
+
+    document.getElementById('validar').addEventListener('click',function(){
+        j.pedirCartaCpu(b.mazo);
+        document.getElementById('vista1').style='display:none';
+        document.getElementById('vista2').style='display:none';
+        document.getElementById('vista3').style='display:block';
+    });
+    document.getElementById('reiniciar').addEventListener('click',function(){
+
+
+
+
+
+        cont=0;
+        suma=0;
+        suma1=0;
+        puntajeJugardor=[];
+        puntajeCPU=[];
+        x=2;
+        b=new Baraja();
+        b.crear(x);
+        b.mazo;
+        j= new Juego();
+        j.mezclar(b.mazo);
+
+
+
+
+        document.getElementById('error').innerHTML='';
+        document.getElementById('result').innerHTML='Resultado : 0';
+        document.getElementById('jugador').value='';
+
+        document.getElementById('cambioCarta').src='blancacarta.js';
+        document.getElementById('vista1').style='display:block';
+        document.getElementById('vista2').style='display:none';
+        document.getElementById('vista3').style='display:none';
+    });
+
+   
+</script>
+
+</html>
